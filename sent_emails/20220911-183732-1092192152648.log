@@ -1,0 +1,22 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: TestSite password reset
+From: webmaster@localhost
+To: hiteshnath643@gmail.com
+Date: Sun, 11 Sep 2022 13:07:32 -0000
+Message-ID: <166290165265.5180.2894073092152632941@DESKTOP-357R4E3>
+
+
+To initiate the password reset process for your dipu TestSite Account,
+click the link below:
+
+http://127.0.0.1:8000/reset/NA/bblnqk-7ee9fff114afcd186241d4c61e063c9a/
+
+If clicking the link above doesn't work, please copy and paste the URL in a new browser
+window instead.
+
+Sincerely,
+The TestSite Team
+
+-------------------------------------------------------------------------------

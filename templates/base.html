@@ -1,0 +1,37 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Twelve | {% block title %}{% endblock title %}</title>
+    {% include 'include/css.html' %}
+    {% block css %}{% endblock css %}
+  </head>
+  <body>
+    <!-- [ Pre-loader ] start -->
+    <center><div class="loadingio-eclipse">
+      <img src=" {% static 'transport.gif' %} " class="rounded loader-img"/>
+    </div></center>
+  <!-- [ Pre-loader ] End -->
+  
+    {% include 'navbar.html' %}
+    <div class="container mt-4">
+    {% block content %}
+    
+    {% endblock content %}
+    </div>
+    {% include 'footer.html' %}
+    {% include 'include/script.html' %}
+    <script>
+
+      $(window).on("load", function(){
+          $(document).ready(function(){
+              $('.loadingio-eclipse').remove()
+          })
+      })
+      </script>
+    {% block script %}
+    {% endblock script %}
+  </body>
+</html>

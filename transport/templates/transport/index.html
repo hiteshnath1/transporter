@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Trasporter{% endblock title %}
+{% block content %}
+  
+{% if request.user.is_authenticated %}
+<div class="d-flex flex-row-reverse">
+    <a href="/add_transport" class="btn btn-primary">
+    Add Transport </a>
+  </div>
+{% endif %}
+  
+{% for obj in object_list %}    
+
+
+<div class="row border border-info rounded mt-2 detail">     
+            
+            <div class="col-md-3 col-sm-6 ">     
+            <img id="profile-pic" src="{{obj.logo.url}}" class="avatar-big" alt="{{obj.name}}">           
+            </div>
+            
+            <div class="col-md-9 col-sm-6 text-container">     
+                <h3>{{obj.name|upper}}</h3>
+                <h5>{{obj.address|upper}}</h5>
+                <p> Branch👉 {% for branch in obj.branches_set.all %}
+                <a href= {% url 'branch detail' branch.id %}>{{branch|upper}}</a>,
+                                {% endfor %}</p>
+                <a href= {% url 'detail' obj.id %}>👉 more..</a></br>
+            
+                {% if request.user == obj.user %}
+                <a href="/add_branch?id={{obj.id}}" class="btn btn-primary mr-2"> Add Branch </a>            
+                <a href="{% url 'update_transport' obj.id %}" class="btn btn-primary mr-2"> Edit </a>            
+                <a class="btn btn-danger" href=" {% url 'delete_transport' obj.id %} ">Delete</a>
+                {% else %}
+                <a href="{% url 'detail' obj.id %}" class="btn btn-primary mr-2"> Contact </a>            
+                {%endif%}
+            </div>
+          </div>
+              
+        
+         {% endfor %}
+
+         {% if messages %}
+{% comment %} my {% endcomment %}
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+              </button>
+          </div>
+          <div class="modal-body">{% for message in messages %}
+            <strong>{{message}} {{request.user.username|upper}}</strong>
+          {% endfor %}
+          </div>
+          <div class="modal-footer">
+              <button class="btn btn-secondary" type="button" data-dismiss="modal">close</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+{% comment %} end {% endcomment %}
+       
+      {% endif %}
+
+{% endblock content %}
+{% block script %}
+<script>
+var myModal = new bootstrap.Modal(document.getElementById('myModal'), {})
+myModal.show()
+</script>
+{% endblock script %}

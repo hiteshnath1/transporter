@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}{{transport.name}}{% endblock title %}
+{% block content %}
+
+<div class="row">
+    <div class="col-md-3 col-sm-6 ">     
+        <img id="profile-pic" src="{{transport.logo.url}}" class="avatar-big" alt="{{transport.name}}">           
+    </div>
+    <div class="col-md-6 col-sm-6 ">     
+        <h1>{{transport.name|upper}}</h1>
+        <h5>{{transport.address|upper}}</h5>
+        <h5><i class="fas fa-home mr-3"></i>{{transport.transporter_id|upper}}</h5>
+        <h5><i class="fas fa-envelope mr-3"></i>{{transport.email}}</h5>
+        <h5><i class="fas fa-phone mr-3"></i>{{transport.mobile_no}}</h5>
+        <h5><i class="fas fa-print mr-3"></i>{{transport.landline_no}}</h5>
+
+    </div>
+</div>
+<hr>
+<h4>Our Branches</h4>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for obj in transport.branches_set.all %}        
+    <div class="col">
+        <div class="card" style="width: 18rem;">
+            <img id="profile-pic" src="{{transport.logo.url}}" class="avatar-big" alt="{{transport.name}}">           
+        <div class="card-body">
+            <h5 class="card-title"><a href= {% url 'branch detail' obj.id %}>{{obj.name|upper}}</a></h5>
+            {% if request.user == transport.user %}
+            <a href="{% url 'update_branch' obj.id %}" class="btn btn-primary">edit</a>
+            <a href="{% url 'delete_branch' obj.id %}" class="btn btn-danger">delete</a>
+            {% else %}
+            <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+            {% endif %}
+        </div>
+    </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}{{branches.name}}{% endblock title %}
+{% block content %}
+
+<div class="row">
+    <div class="col-md-3 col-sm-6 ">     
+        <img id="profile-pic" src="{{branches.transport.logo.url}}" class="avatar-big" alt="{{branches.transport.name}}">           
+    </div>
+    <div class="col-md-6 col-sm-6 ">     
+        <h2>{{branches.transport.name|upper}}</h2>
+        <h4>{{branches.name|upper}}</h4>
+        <h5>{{branches.address|upper}}</h5>
+        <h5><i class="fas fa-home mr-3"></i>{{branches.transporter_id|upper}}</h5>
+        <h5><i class="fas fa-envelope mr-3"></i>{{branches.email}}</h5>
+        <h5><i class="fas fa-phone mr-3"></i>{{branches.mobile_no}}</h5>
+        <h5><i class="fas fa-print mr-3"></i>{{branches.landline_no}}</h5>
+    </div>
+</div>
+<hr>
+{% endblock content %}

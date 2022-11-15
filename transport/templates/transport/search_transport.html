@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block title %}Search{% endblock title %}
+{% block content %}
+<form method="POST">
+    <div class="row">
+            {% csrf_token %}
+        <div class="col-4">
+            {{form.source}}
+        </div>
+        <div class="col-4">
+            {{form.destination}}
+        </div>
+        <div class="col-4">
+            <input type="submit" class="btn btn-primary" value="Search">
+        </div>
+    </div>
+</form>
+
+{% if destination_transporter %}
+<div class="d-flex justify-content-around">
+    <div class=" p-2"><b><i>{{source|upper}}</i></b></div>
+    
+    <div class="p-2"><b><i>{{destination|upper}}</i></b></div>
+  </div>
+        
+        {% for obj in destination_transporter %}
+        <div class="row border border-info rounded mt-2 detail">     
+            <div class="col-md-3 col-sm-6 ">     
+            <img id="profile-pic" src="{{obj.logo.url}}" class="avatar-big" alt="{{obj.name}}">           
+            </div>
+            <div class="col-md-9 col-sm-6">     
+                <h3>{{obj.name|upper}}</h3>
+                <h5>{{obj.address|upper}}</h5>
+                <p> Branch👉 {% for branch in obj.branches_set.all %}
+                    <a href= {% url 'branch detail' branch.id %}>{{branch|upper}}</a>,
+                                    {% endfor %}</p>
+                    <a href= {% url 'detail' obj.id %}>👉 more..</a></br>
+                    <a href="{% url 'detail' obj.id %}" class="btn btn-primary mr-2"> Contact </a>            
+            </div>  
+        </div>
+        {% endfor %}
+{% endif %}
+{% endblock content %}
+
+{% block script %}
+<script>
+$(document).ready( function () {
+    $('#myTable').DataTable();
+} );
+</script>
+{% endblock script %}

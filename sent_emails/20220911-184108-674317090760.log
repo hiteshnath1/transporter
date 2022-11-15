@@ -1,0 +1,22 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: TestSite password reset
+From: webmaster@localhost
+To: hiteshnath143@yahoo.com
+Date: Sun, 11 Sep 2022 13:11:08 -0000
+Message-ID: <166290186860.7824.17302031019464481266@DESKTOP-357R4E3>
+
+
+To initiate the password reset process for your admin TestSite Account,
+click the link below:
+
+http://127.0.0.1:8000/reset/MQ/bblnwk-e3c8fa7c5ae7e0d1864c9faf4e909b11/
+
+If clicking the link above doesn't work, please copy and paste the URL in a new browser
+window instead.
+
+Sincerely,
+The TestSite Team
+
+-------------------------------------------------------------------------------

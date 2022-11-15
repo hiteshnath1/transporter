@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+  Do you want to delete {{object|upper}}
+      <input type= "submit" value="confirm" class="btn btn-danger">
+  </div>
+</form>
+{% endblock content %}

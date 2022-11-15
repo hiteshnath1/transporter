@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Search Result{% endblock title %}
+{% block content %}
+
+        
+        {% for obj in transporter %}
+        <div class="row border border-info rounded mt-2 detail">     
+            <div class="col-md-3 col-sm-6 ">     
+            <img id="profile-pic" src="{{obj.logo.url}}" class="avatar-big" alt="{{obj.name}}">           
+            </div>
+            <div class="col-md-9 col-sm-6">     
+                <h3>{{obj.name|upper}}</h3>
+                <h5>{{obj.address|upper}}</h5>
+                <p> Branch👉 {% for branch in obj.branches_set.all %}
+                    <a href= {% url 'branch detail' branch.id %}>{{branch|upper}}</a>,
+                                    {% endfor %}</p>
+                    <a href= {% url 'detail' obj.id %}>👉 more..</a></br>
+                    <a href="{% url 'detail' obj.id %}" class="btn btn-primary mr-2"> Contact </a>            
+            </div>  
+        </div>
+        {% endfor %}
+{% endblock content %}
